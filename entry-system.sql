@@ -20,3 +20,9 @@ CREATE TABLE groups (
 	name varchar(20) not null,
 	permissions text
 );
+
+CREATE TABLE users_session (
+	id int(5) not null AUTO_INCREMENT PRIMARY KEY,
+	user_id int(5) not null,
+	hash varchar(50) not null
+);
