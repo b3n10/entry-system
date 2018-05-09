@@ -1,4 +1,5 @@
 <?php
+// establish db connection using singleton method
 // The singleton pattern is used to restrict the instantiation of a class to a single object, which can be useful when only one object is required across the system.
 // _ in $_variable is a notation that it is private
 
