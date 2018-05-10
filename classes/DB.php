@@ -58,4 +58,29 @@ class DB {
 	public function error () {
 		return $this->_error;
 	}
+
+	private function action($action, $table, $where = array()) {
+		// array should have 3: field, operator, value ("username", "=", "ben")
+		if (count($where) === 3) {
+			$operators = array("=", ">", "<", ">=", "<=");
+
+			$field			= $where[0];
+			$operator		= $where[1];
+			$value			= $where[2];
+
+			// if the operator is in valid operators
+			if (in_array($operator, $operators)) {
+				$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
+
+				// if no error on query, return the instance
+				if (!$this->query($sql, array($value))->error()) {
+					return $this;
+				}
+			}
+		}
+
+		// if $where is less or more than 3
+		return false;
+	}
+
 }
