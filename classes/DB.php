@@ -83,4 +83,8 @@ class DB {
 		return false;
 	}
 
+	public function get($table, $where) {
+		return $this->action("SELECT *", $table, $where);
+	}
+
 }
