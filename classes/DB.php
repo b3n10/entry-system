@@ -26,4 +26,36 @@ class DB {
 		}
 		return self::$_instance;
 	}
+
+	public function query($sql, $params = array()) {
+		// prepare the sql
+		// default empty array for $params
+		$this->_error = false; // reset if there is prev error
+
+		if ($this->_query = $this->_pdo->prepare($sql)) {
+
+			$pos = 1; // position of index to bind
+			if (count($params)) {
+				foreach ($params as $param) {
+					$this->_query->bindValue($pos, $param);
+					$pos++; // increment position or go to next index to bind
+				}
+			}
+
+			// if execute is okay
+			if ($this->_query->execute()) {
+				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ); // fetch the PDO object results
+				$this->_count = $this->_query->rowCount();
+			} else {
+				// error if failed to execute
+				$this->_error = true;
+			}
+		}
+
+		return $this; // return instance/object of the class
+	}
+
+	public function error () {
+		return $this->_error;
+	}
 }
