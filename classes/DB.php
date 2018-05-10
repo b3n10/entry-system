@@ -87,4 +87,8 @@ class DB {
 		return $this->action("SELECT *", $table, $where);
 	}
 
+	public function delete($table, $where) {
+		return $this->action("DELETE", $table, $where);
+	}
+
 }
