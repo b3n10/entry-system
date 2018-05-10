@@ -91,4 +91,7 @@ class DB {
 		return $this->action("DELETE", $table, $where);
 	}
 
+	public function count() {
+		return $this->_count;
+	}
 }
