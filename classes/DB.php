@@ -114,6 +114,26 @@ class DB {
 		return false;
 	}
 
+	public function update($table, $id, $fields = array()) {
+		$set = "";
+		$pos = 1;
+
+		foreach ($fields as $key => $value) {
+			$set .= "{$key} = ?";
+			if ($pos < count($fields)) {
+				$set .= ", ";
+			}
+			$pos++;
+		}
+
+		$sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
+
+		if (!$this->query($sql, $fields)->error()) {
+			return true;
+		}
+		return false;
+	}
+
 	public function results() {
 		return $this->_results;
 	}
