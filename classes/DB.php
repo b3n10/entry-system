@@ -91,6 +91,29 @@ class DB {
 		return $this->action("DELETE", $table, $where);
 	}
 
+	public function insert($table, $fields = array()) {
+		if (count($fields)) {
+			$keys = array_keys($fields);
+			$values = "";
+			$pos = 1;
+
+			foreach ($fields as $field) {
+				$values .= "?";
+				if ($pos < count($fields)) {
+					$values .= ", ";
+				}
+				$pos++;
+			}
+
+			$sql = "INSERT INTO {$table} (`" . implode("`, `", $keys) . "`) VALUES ({$values})";
+
+			if (!$this->query($sql, $fields)->error()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public function results() {
 		return $this->_results;
 	}
