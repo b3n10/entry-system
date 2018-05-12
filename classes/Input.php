@@ -22,4 +22,5 @@ class Input {
 			return $_GET[$item];
 		}
 	}
+
 }
