@@ -36,4 +36,8 @@ class Validate {
 		$this->_errors[] = $error;
 	}
 
+	public function errors() {
+		return $this->_errors;
+	}
+
 }
