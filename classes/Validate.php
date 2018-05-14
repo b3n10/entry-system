@@ -13,8 +13,16 @@ class Validate {
 		foreach ($items as $item => $rules) {
 			// $item is the field name
 			// $rules is an array of the field name
-		}
+			foreach ($rules as $rule => $ruleValue) {
 
+				$value = $source[$item];
+
+				if ($rule === "required" && empty($value)) {
+					$this->addError("{$item} is required");
+				}
+
+			}
+		}
 	}
 
 	public function addError($error) {
