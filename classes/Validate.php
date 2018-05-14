@@ -23,6 +23,12 @@ class Validate {
 
 			}
 		}
+
+		if (empty($this->_errors)) {
+			// if _errors array has no value, meaning no field name is added on the array or not blank
+			$this->_passed = true;
+		}
+
 	}
 
 	public function addError($error) {
