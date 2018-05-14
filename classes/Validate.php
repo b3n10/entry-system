@@ -24,7 +24,7 @@ class Validate {
 					switch ($rule_name) {
 					case "min":
 						if (strlen($value) < $rule_value) {
-							$this->addError("{$item} must be minimum of {$rule_value} characters long<br/>");
+							$this->addError("{$item} must be minimum of {$rule_value} characters long.");
 						}
 						break;
 					}
