@@ -29,6 +29,7 @@ class Validate {
 			$this->_passed = true;
 		}
 
+		return $this;
 	}
 
 	public function addError($error) {
