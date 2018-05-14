@@ -40,4 +40,7 @@ class Validate {
 		return $this->_errors;
 	}
 
+	public function passed() {
+		return $this->_passed;
+	}
 }
