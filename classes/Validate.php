@@ -32,6 +32,11 @@ class Validate {
 							$this->addError("{$item} must be maximum of {$rule_value} characters long.");
 						}
 						break;
+					case 'matches':
+						if ($value != $source[$rule_value]) {
+							$this->addError("{$rule_value} must match {$item}");
+						}
+						break;
 					}
 				}
 
@@ -47,6 +52,7 @@ class Validate {
 	}
 
 	public function addError($error) {
+		// add $error to $_errors array
 		$this->_errors[] = $error;
 	}
 
