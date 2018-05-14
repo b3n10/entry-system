@@ -19,6 +19,7 @@ class Validate {
 
 				if ($rule === "required" && empty($value)) {
 					$this->addError("{$item} is required");
+				} else {
 				}
 
 			}
