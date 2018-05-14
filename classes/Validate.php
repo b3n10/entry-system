@@ -31,4 +31,9 @@ class Validate {
 
 		return $this;
 	}
+
+	public function addError($error) {
+		$this->_errors[] = $error;
+	}
+
 }
