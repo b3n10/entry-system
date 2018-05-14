@@ -13,13 +13,15 @@ class Validate {
 		foreach ($items as $item => $rules) {
 			// $item is the field name
 			// $rules is an array of the field name
-			foreach ($rules as $rule => $ruleValue) {
+			foreach ($rules as $rule_name => $rule_value) {
 
-				$value = $source[$item];
+				// $_POST["username"] is value from textbox "username"
+				$value = trim($source[$item]);
 
-				if ($rule === "required" && empty($value)) {
+				if ($rule_name === "required" && empty($value)) {
 					$this->addError("{$item} is required");
-				} else {
+				} else if (!empty($value)) {
+					switch ($rule_name) {
 				}
 
 			}
