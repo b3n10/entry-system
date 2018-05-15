@@ -64,6 +64,7 @@ if (Input::exists()) {
 		</div>
 
 		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+
 		<button type="submit">Register</button>
 	</form>
 </body>
