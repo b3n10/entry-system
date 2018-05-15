@@ -2,6 +2,8 @@
 require_once "core/init.php";
 
 if (Input::exists()) {
+	// Preventing Cross-Site Request Forgery
+	// to make sure user clicks register/submit form and not pass data to URL
 	if (Token::check(Input::get('token'))) {
 		$validate = new Validate();
 		$validation = $validate->check($_POST, array(
