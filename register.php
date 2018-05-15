@@ -1,3 +1,40 @@
+<?php
+require_once "core/init.php";
+
+if (Input::exists()) {
+	$validate = new Validate();
+	$validation = $validate->check($_POST, array(
+		"username"	=> array(
+			"required"	=> true,
+			"min"				=> 2,
+			"max"				=> 20,
+			"unique"		=> "users" // unique in 'users' table
+		),
+		"password1"	=> array(
+			"required"	=> true,
+			"min"				=> 6,
+		),
+		"password2"	=> array(
+			"required"	=> true,
+			"matches"		=> "password1",
+		),
+		"name"			=> array(
+			"required"	=> true,
+			"min"				=> 2,
+			"max"				=> 50
+		)
+	));
+
+	if ($validation->passed()) {
+		echo "Passed";
+	} else {
+		foreach ($validation->errors() as $error) {
+			echo $error . "<br/>";
+		}
+	}
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +46,7 @@
 	<form action="" method="POST">
 		<div class="field">
 			<label for="username">Username:</label>
-			<input type="text" name="username" id="username" autocomplete="off">
+			<input type="text" name="username" id="username" autocomplete="off" value="<?php echo escape(Input::get('username')); ?>">
 		</div>
 		<div class="field">
 			<label for="password1">Password:</label>
@@ -21,7 +58,7 @@
 		</div>
 		<div class="field">
 			<label for="name">Name:</label>
-			<input type="text" name="name" id="name">
+			<input type="text" name="name" id="name" value="<?php echo escape(Input::get('name')); ?>">
 		</div>
 		<button type="submit">Register</button>
 	</form>
