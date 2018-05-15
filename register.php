@@ -60,6 +60,8 @@ if (Input::exists()) {
 			<label for="name">Name:</label>
 			<input type="text" name="name" id="name" value="<?php echo escape(Input::get('name')); ?>">
 		</div>
+
+		<input type="hidden" name="token" value="">
 		<button type="submit">Register</button>
 	</form>
 </body>
