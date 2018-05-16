@@ -20,4 +20,16 @@ class Session {
 			unset($_SESSION[$token_name]);
 		}
 	}
+
+	public static function flash($token_name, $string = '') {
+		// if session exists, delete it
+		if (self::exists($token_name)) {
+			$session = self::get($token_name);
+			self::delete($token_name);
+			return $session;
+		} else {
+			// otherwise, set it
+			self::put($token_name, $string);
+		}
+	}
 }
