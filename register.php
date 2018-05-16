@@ -29,9 +29,13 @@ if (Input::exists()) {
 		));
 
 		if ($validation->passed()) {
-			// show success msg to homepage
-			Session::flash('success', 'You successfully registered!');
-			header('Location: index.php');
+			$user = new User();
+			try {
+
+			} catch (Exception $e) {
+				// but much better to redirect to page showing error
+				die($e->getMessage());
+			}
 		} else {
 			foreach ($validation->errors() as $error) {
 				echo $error . "<br/>";
