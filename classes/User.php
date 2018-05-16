@@ -6,4 +6,11 @@ class User {
 	public function __construct($user = null) {
 		$this->_db = DB::getInstance();
 	}
+
+	public function create($fields = array()) {
+		// if error on insert, throw exception
+		if (!$this->_db->insert('users', $fields)) {
+			throw new Exception('There was a problem creating user');
+		}
+	}
 }
