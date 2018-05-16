@@ -21,8 +21,9 @@ class Session {
 		}
 	}
 
+	// show success msg after registration
 	public static function flash($token_name, $string = '') {
-		// if session exists, delete it
+		// if session exists, delete then return it
 		if (self::exists($token_name)) {
 			$session = self::get($token_name);
 			self::delete($token_name);
