@@ -33,6 +33,7 @@ if (Input::exists()) {
 			$salt = Hash::salt(5);
 
 			try {
+
 				$user->create(array(
 					'username'		=> Input::get('username'),
 					'password'		=> Hash::make(Input::get('password'), $salt),
@@ -45,6 +46,7 @@ if (Input::exists()) {
 				// redirect user to index with success msg
 				Session::flash('home', 'Your registration is successful! Please log in.');
 				header('Location: index.php');
+
 			} catch (Exception $e) {
 				// but much better to redirect to page showing error
 				die($e->getMessage());
