@@ -30,14 +30,16 @@ if (Input::exists()) {
 
 		if ($validation->passed()) {
 			$user = new User();
+			$salt = Hash::salt(5);
+
 			try {
 				$user->create(array(
-					'username'		=> '',
-					'password'		=> '',
-					'salt'				=> '',
-					'name'				=> '',
-					'date_joined'	=> '',
-					'user_group'	=> '',
+					'username'		=> Input::get('username'),
+					'password'		=> Hash::make(Input::get('password'), $salt),
+					'salt'				=> $salt, // without salt, original password cannot (or will have difficult time) be compared
+					'name'				=> Input::get('name'),
+					'date_joined'	=> date('Y-m-d H:i:s'),
+					'user_group'	=> 1
 				));
 			} catch (Exception $e) {
 				// but much better to redirect to page showing error
