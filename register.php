@@ -31,7 +31,14 @@ if (Input::exists()) {
 		if ($validation->passed()) {
 			$user = new User();
 			try {
-
+				$user->create(array(
+					'username'		=> '',
+					'password'		=> '',
+					'salt'				=> '',
+					'name'				=> '',
+					'date_joined'	=> '',
+					'user_group'	=> '',
+				));
 			} catch (Exception $e) {
 				// but much better to redirect to page showing error
 				die($e->getMessage());
