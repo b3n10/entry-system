@@ -1,6 +1,26 @@
 <?php
 require_once 'core/init.php';
 
+if (Input::exists()) {
+	if (Token::check(Input::get('token'))) {
+
+		$validate = new Validate();
+		$validation = $validate->check('$_POST', array(
+			'username'	=> array(
+				'required'	=> true,
+				'min'				=> 2,
+				'max'				=> 6
+			),
+			'password'	=> array(
+				'required'	=> true,
+				'min'				=> 6
+			)
+		));
+
+		if ($validation->passed()) {
+		}
+	}
+}
 ?>
 
 <!DOCTYPE html>
