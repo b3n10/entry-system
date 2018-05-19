@@ -16,6 +16,13 @@ if (Input::exists()) {
 				'min'				=> 6
 			)
 		));
+
+		if ($validation->passed()) {
+		} else {
+			foreach ($validation->errors() as $error) {
+				echo '<p>' . $error . '</p>';
+			}
+		}
 	}
 }
 ?>
