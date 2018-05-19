@@ -18,6 +18,16 @@ if (Input::exists()) {
 		));
 
 		if ($validation->passed()) {
+
+			$user = new User();
+			$login = $user->login(Input::get('username'), Input::get('password'));
+
+			if ($login) {
+				// redirect user to index with success msg
+				Session::flash('home', 'Log in success for ' . Input::get('username'));
+				Redirect::to('index.php');
+			}
+
 		} else {
 			foreach ($validation->errors() as $error) {
 				echo '<p>' . $error . '</p>';
