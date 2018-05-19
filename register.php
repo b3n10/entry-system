@@ -45,7 +45,7 @@ if (Input::exists()) {
 
 				// redirect user to index with success msg
 				Session::flash('home', 'Your registration is successful! Please log in.');
-				header('Location: index.php');
+				Redirect::to('index.php');
 
 			} catch (Exception $e) {
 				// but much better to redirect to page showing error
