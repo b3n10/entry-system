@@ -13,4 +13,9 @@ class User {
 			throw new Exception('There was a problem creating user');
 		}
 	}
+
+	public function login($username, $password) {
+
+		return false;
+	}
 }
