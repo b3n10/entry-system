@@ -5,7 +5,7 @@ if (Input::exists()) {
 	if (Token::check(Input::get('token'))) {
 
 		$validate = new Validate();
-		$validation = $validate->check('$_POST', array(
+		$validation = $validate->check($_POST, array(
 			'username'	=> array(
 				'required'	=> true,
 				'min'				=> 2,
@@ -16,9 +16,6 @@ if (Input::exists()) {
 				'min'				=> 6
 			)
 		));
-
-		if ($validation->passed()) {
-		}
 	}
 }
 ?>
