@@ -79,4 +79,9 @@ class User {
 	public function data() {
 		return $this->_data;
 	}
+
+	public function isLoggedIn() {
+		return $this->_isLoggedIn;
+	}
+
 }
