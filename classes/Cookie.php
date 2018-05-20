@@ -3,22 +3,22 @@
 class Cookie {
 
 	// Cookie::exists(cookie_name)
-	public static function exists($name) {
-		return (isset($_COOKIE[$name])) ? true : false;
+	public static function exists($cookie_name) {
+		return (isset($_COOKIE[$cookie_name])) ? true : false;
 	}
 
 	// Cookie::get(cookie_name)
-	public static function get($name) {
-		return $_COOKIE[$name];
+	public static function get($cookie_name) {
+		return $_COOKIE[$cookie_name];
 	}
 
 	// Cookie::put(cookie_name, value, expiration)
-	public static function put($name, $value, $expiry) {
+	public static function put($cookie_name, $value, $expiry) {
 		// create cookie
 	}
 
 	// Cookie::delete(cookie_name)
-	public static function delete($name) {
+	public static function delete($cookie_name) {
 		// reset cookie expiration to negative value
 	}
 }
