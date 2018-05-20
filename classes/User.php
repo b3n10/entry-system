@@ -16,9 +16,9 @@ class User {
 	}
 
 	public function find($username = null) {
-		if ($user) {
-			$field = (is_numeric($user)) ? 'id' : 'username';
-			$data = $this->_db->get('users', array($field, '=', $user));
+		if ($username) {
+			$field = (is_numeric($username)) ? 'id' : 'username';
+			$data = $this->_db->get('users', array($field, '=', $username));
 
 			if ($data->count()) {
 				$this->_data = $data->first();
