@@ -6,8 +6,40 @@ class User {
 					$_sessionName;
 
 	public function __construct($user = null) {
+
 		$this->_db = DB::getInstance();
 		$this->_sessionName = Config::get('session/session_name');
+
+		// if User object instance has passed no $user
+		// e.g. $user = new User();
+		if (!$user) {
+
+			// check if session exists (if a user is logged in)
+			if (Session::exists($this->_sessionName)) {
+
+				// this will be an id of $user
+				$user = Session::get($this->_sessionName);
+
+				// if $user is valid in users table
+				if ($this->find($user)) {
+
+					$this->isLoggedIn = true;
+
+				} else {
+
+					// logged out
+
+				}
+
+			}
+
+			// if $user is defined in the constructor
+		} else {
+
+			$this->find($user);
+
+		}
+
 	}
 
 	public function create($fields = array()) {
