@@ -32,4 +32,8 @@ class User {
 
 		return false;
 	}
+
+	private function data() {
+		return $this->_data;
+	}
 }
