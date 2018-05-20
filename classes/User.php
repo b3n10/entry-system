@@ -115,6 +115,11 @@ class User {
 		return $this->_data;
 	}
 
+	// if data is already retrieved
+	public function exists() {
+		return (!empty($this->_data));
+	}
+
 	public function isLoggedIn() {
 		return $this->_isLoggedIn;
 	}
