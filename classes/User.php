@@ -3,11 +3,11 @@
 class User {
 	private $_db,
 					$_data,
-					$_session_name;
+					$_sessionName;
 
 	public function __construct($user = null) {
 		$this->_db = DB::getInstance();
-		$_session_name = Config::get('session/session_name');
+		$this->_sessionName = Config::get('session/session_name');
 	}
 
 	public function create($fields = array()) {
@@ -36,7 +36,7 @@ class User {
 			// if password matches
 			if ($this->data()->password === Hash::make($password, $this->data()->salt)) {
 				// use id as value to create session
-				Session::put($this->_session_name, $this->data()->id);
+				Session::put($this->_sessionName, $this->data()->id);
 				return true;
 			}
 		}
