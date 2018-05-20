@@ -9,7 +9,7 @@ if (Input::exists()) {
 			'username'	=> array(
 				'required'	=> true,
 				'min'				=> 2,
-				'max'				=> 6
+				'max'				=> 20
 			),
 			'password'	=> array(
 				'required'	=> true,
@@ -23,9 +23,9 @@ if (Input::exists()) {
 			$login = $user->login(Input::get('username'), Input::get('password'));
 
 			if ($login) {
-				// redirect user to index with success msg
-				Session::flash('home', 'Log in success for ' . Input::get('username'));
-				Redirect::to('index.php');
+				echo 'Success';
+			} else {
+				echo 'Failed';
 			}
 
 		} else {
