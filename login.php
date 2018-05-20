@@ -25,8 +25,6 @@ if (Input::exists()) {
 
 			$login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
-			die();
-
 			if ($login) {
 				Redirect::to('index.php');
 			} else {
