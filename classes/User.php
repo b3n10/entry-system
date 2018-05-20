@@ -100,7 +100,7 @@ class User {
 					}
 
 					// then create cookie
-					Cookie::put($_cookieName, $hash, Config::get('remember/cookie_expiry'));
+					Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
 
 				}
 
