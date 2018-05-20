@@ -65,7 +65,7 @@ class User {
 		return false;
 	}
 
-	public function login($username, $password, $remember) {
+	public function login($username = null, $password = null, $remember = null) {
 
 		// if there is $username
 		if ($this->find($username)) {
