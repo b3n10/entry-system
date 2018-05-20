@@ -29,7 +29,11 @@ class User {
 	}
 
 	public function login($username, $password) {
-
+		if ($this->find($username)) {
+			if ($this->data()->password === Hash::make($password, $this->data()->salt)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
