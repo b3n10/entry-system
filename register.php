@@ -65,7 +65,6 @@ if (Input::exists()) {
 <head>
 	<meta charset="UTF-8">
 	<title>Register</title>
-	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<form action="" method="POST">
