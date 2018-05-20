@@ -13,8 +13,12 @@ class Cookie {
 	}
 
 	// Cookie::put(cookie_name, value, expiration)
+	// create cookie
 	public static function put($cookie_name, $value, $expiry) {
-		// create cookie
+		if (setcookie($cookie_name, $value, time() + $expiry, '/') {
+			return true;
+		}
+		return false;
 	}
 
 	// Cookie::delete(cookie_name)
