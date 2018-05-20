@@ -15,7 +15,7 @@ class Cookie {
 	// Cookie::put(cookie_name, value, expiration)
 	// create cookie
 	public static function put($cookie_name, $value, $expiry) {
-		if (setcookie($cookie_name, $value, time() + $expiry, '/') {
+		if (setcookie($cookie_name, $value, time() + $expiry, '/')) {
 			return true;
 		}
 		return false;
@@ -24,5 +24,6 @@ class Cookie {
 	// Cookie::delete(cookie_name)
 	public static function delete($cookie_name) {
 		// reset cookie expiration to negative value
+		self::put($cookie_name, '', time() - 1);
 	}
 }
