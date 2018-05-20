@@ -76,6 +76,26 @@ class User {
 
 				if ($remember) {
 
+					$hash = Hash::unique();
+					$hash_check = $this->_db->get('users_session', array('user_id', '=', $this->data()->id));
+
+					// if there is no hash record for the user_id
+					if (!$hash_check->count()) {
+
+						// insert hash record for user_id
+						$this->_db->insert('users_session', array(
+							'user_id'	=> $this->data()->id,
+							'hash'		=> $hash
+						));
+
+						// if hash record exist for user_id
+					} else {
+
+						// get the current hash from record
+						$hash = $hash_check->first()->hash;
+
+					}
+
 				}
 
 				return true;
