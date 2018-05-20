@@ -75,7 +75,7 @@ class User {
 		return false;
 	}
 
-	private function data() {
+	public function data() {
 		return $this->_data;
 	}
 }
