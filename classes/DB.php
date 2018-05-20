@@ -134,6 +134,10 @@ class DB {
 		return false;
 	}
 
+	public function first() {
+		return $this->results()[0];
+	}
+
 	public function results() {
 		return $this->_results;
 	}
