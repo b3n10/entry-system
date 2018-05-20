@@ -4,12 +4,14 @@ class User {
 	private $_db,
 					$_data,
 					$_sessionName,
+					$_cookieName,
 					$_isLoggedIn;
 
 	public function __construct($user = null) {
 
 		$this->_db = DB::getInstance();
 		$this->_sessionName = Config::get('session/session_name');
+		$this->_cookieName = Config::get('remember/cookie_name');
 
 		// if User object instance has passed no $user
 		// e.g. $user = new User();
@@ -74,6 +76,7 @@ class User {
 				// use id as value to create session
 				Session::put($this->_sessionName, $this->data()->id);
 
+				// if user checks the box for 'Remember Me'
 				if ($remember) {
 
 					$hash = Hash::unique();
@@ -82,7 +85,7 @@ class User {
 					// if there is no hash record for the user_id
 					if (!$hash_check->count()) {
 
-						// insert hash record for user_id
+						// insert hash to record for user_id
 						$this->_db->insert('users_session', array(
 							'user_id'	=> $this->data()->id,
 							'hash'		=> $hash
@@ -95,6 +98,9 @@ class User {
 						$hash = $hash_check->first()->hash;
 
 					}
+
+					// then set the cookie
+					Cookie::put($_cookieName, $hash, Config::get('remember/cookie_expiry'));
 
 				}
 
