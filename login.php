@@ -23,7 +23,7 @@ if (Input::exists()) {
 			$login = $user->login(Input::get('username'), Input::get('password'));
 
 			if ($login) {
-				echo 'Success. Go to <a href="index.php">home</a>';
+				Redirect::to('index.php');
 			} else {
 				echo 'Failed';
 			}
