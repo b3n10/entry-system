@@ -36,7 +36,7 @@ if (Input::exists()) {
 
 				$user->create(array(
 					'username'		=> Input::get('username'),
-					'password'		=> Hash::make(Input::get('password'), $salt),
+					'password'		=> Hash::make(Input::get('password1'), $salt),
 					'salt'				=> $salt, // without salt, original password cannot (or will have difficult time) be compared
 					'name'				=> Input::get('name'),
 					'date_joined'	=> date('Y-m-d H:i:s'),
