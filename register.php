@@ -87,7 +87,7 @@ if (Input::exists()) {
 
 		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 
-		<button type="submit">Register</button>
+		<button type="submit">Register</button> or <a href="login.php">Log in</a>
 	</form>
 </body>
 </html>
