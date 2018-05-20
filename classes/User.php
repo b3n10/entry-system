@@ -3,7 +3,8 @@
 class User {
 	private $_db,
 					$_data,
-					$_sessionName;
+					$_sessionName,
+					$_isLoggedIn;
 
 	public function __construct($user = null) {
 
@@ -23,7 +24,7 @@ class User {
 				// if $user is valid in users table
 				if ($this->find($user)) {
 
-					$this->isLoggedIn = true;
+					$this->_isLoggedIn = true;
 
 				} else {
 
