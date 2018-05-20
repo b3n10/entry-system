@@ -63,14 +63,23 @@ class User {
 		return false;
 	}
 
-	public function login($username, $password) {
+	public function login($username, $password, $remember) {
+
 		// if there is $username
 		if ($this->find($username)) {
+
 			// if password matches
 			if ($this->data()->password === Hash::make($password, $this->data()->salt)) {
+
 				// use id as value to create session
 				Session::put($this->_sessionName, $this->data()->id);
+
+				if ($remember) {
+
+				}
+
 				return true;
+
 			}
 		}
 		return false;
