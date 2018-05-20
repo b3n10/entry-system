@@ -24,5 +24,5 @@ CREATE TABLE groups (
 CREATE TABLE users_session (
 	id int(5) not null AUTO_INCREMENT PRIMARY KEY,
 	user_id int(5) not null,
-	hash varchar(100) not null
+	hash varchar(64) not null
 );
