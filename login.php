@@ -25,6 +25,8 @@ if (Input::exists()) {
 
 			$login = $user->login(Input::get('username'), Input::get('password'), $remember);
 
+			die();
+
 			if ($login) {
 				Redirect::to('index.php');
 			} else {
@@ -59,14 +61,15 @@ if (Input::exists()) {
 			<input type="password" name="password" id="password">
 		</div>
 
-		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-		<button type="submit">Log in</button> or <a href="register.php">Register</a>
-
 		<div class="field">
 			<label for="remember">
 				<input type="checkbox" name="remember" id="remember">Remember Me
 			</label>
 		</div>
+
+		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+		<button type="submit">Log in</button> or <a href="register.php">Register</a>
+
 
 	</form>
 </body>
