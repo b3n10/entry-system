@@ -82,7 +82,7 @@ class User {
 					$hash = Hash::unique();
 					$hash_check = $this->_db->get('users_session', array('user_id', '=', $this->data()->id));
 
-					// if there is no hash record for the user_id
+					// if no hash record for user_id
 					if (!$hash_check->count()) {
 
 						// insert hash to record for user_id
@@ -94,12 +94,12 @@ class User {
 						// if hash record exist for user_id
 					} else {
 
-						// get the current hash from record
+						// get current hash from record
 						$hash = $hash_check->first()->hash;
 
 					}
 
-					// then set the cookie
+					// then create cookie
 					Cookie::put($_cookieName, $hash, Config::get('remember/cookie_expiry'));
 
 				}
