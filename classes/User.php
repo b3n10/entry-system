@@ -67,48 +67,59 @@ class User {
 
 	public function login($username = null, $password = null, $remember = false) {
 
-		// if there is $username
-		if ($this->find($username)) {
+		// if no username & password were passed but data already retrieved
+		if (!$username && !$password && $this->exists()) {
 
-			// if password matches
-			if ($this->data()->password === Hash::make($password, $this->data()->salt)) {
+			// create session for user using id
+			Session::put($this->_sessionName, $this->data()->id);
 
-				// use id as value to create session
-				Session::put($this->_sessionName, $this->data()->id);
+		} else {
+			// if there is $username
+			if ($this->find($username)) {
 
-				// if user checks the box for 'Remember Me'
-				if ($remember) {
+				// if password matches
+				if ($this->data()->password === Hash::make($password, $this->data()->salt)) {
 
-					$hash = Hash::unique();
-					$hash_check = $this->_db->get('users_session', array('user_id', '=', $this->data()->id));
+					// use id as value to create session
+					Session::put($this->_sessionName, $this->data()->id);
 
-					// if no hash record for user_id
-					if (!$hash_check->count()) {
+					// if user checks the box for 'Remember Me'
+					if ($remember) {
 
-						// insert hash to record for user_id
-						$this->_db->insert('users_session', array(
-							'user_id'	=> $this->data()->id,
-							'hash'		=> $hash
-						));
+						$hash = Hash::unique();
+						$hash_check = $this->_db->get('users_session', array('user_id', '=', $this->data()->id));
 
-						// if hash record exist for user_id
-					} else {
+						// if no hash record for user_id
+						if (!$hash_check->count()) {
 
-						// get current hash from record
-						$hash = $hash_check->first()->hash;
+							// insert hash to record for user_id
+							$this->_db->insert('users_session', array(
+								'user_id'	=> $this->data()->id,
+								'hash'		=> $hash
+							));
+
+							// if hash record exist for user_id
+						} else {
+
+							// get current hash from record
+							$hash = $hash_check->first()->hash;
+
+						}
+
+						// then create cookie
+						Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
 
 					}
 
-					// then create cookie
-					Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
+					return true;
 
 				}
-
-				return true;
-
 			}
+
+			return false;
+
 		}
-		return false;
+
 	}
 
 	public function data() {
