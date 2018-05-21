@@ -4,8 +4,17 @@ require_once 'core/init.php';
 
 $user = new User();
 
+// if user is not logged in, redirect to home
 if (!$user->isLoggedIn()) {
 	Redirect::to('index.php');
+}
+
+// if form is submitted
+if (Input::exists()) {
+	// if token exists
+	if (Token::check(Input::get('token'))) {
+		echo 'ok';
+	}
 }
 
 ?>
