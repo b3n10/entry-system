@@ -136,10 +136,13 @@ class User {
 		return $this->_isLoggedIn;
 	}
 
-	// delete sesssion and cookie
 	public function logout() {
+		// delete sesssion and cookie
 		Session::delete($this->_sessionName);
 		Cookie::delete($this->_cookieName);
+
+		// delete hash (cookie) from db
+		$this->_db->delete('users_session', array('user_id', '=', $this->data()->id));
 	}
 
 }
