@@ -122,6 +122,7 @@ class User {
 
 	}
 
+	// get data if already retrieved
 	public function data() {
 		return $this->_data;
 	}
@@ -135,6 +136,7 @@ class User {
 		return $this->_isLoggedIn;
 	}
 
+	// delete sesssion and cookie
 	public function logout() {
 		Session::delete($this->_sessionName);
 		Cookie::delete($this->_cookieName);
