@@ -43,6 +43,11 @@ if (Cookie::exists(Config::get('remember/cookie_name')) && !Session::exists(Conf
 
 	// if hash value matches on record
 	if ($hash_check->count()) {
-		echo 'user should be logged in.';
+
+		// auto log in user
+		// pass user_id for creating User object
+		$user = new User($hash_check->first()->user_id);
+		$user->login();
+
 	}
 }
