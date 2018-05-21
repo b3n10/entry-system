@@ -137,6 +137,7 @@ class User {
 
 	public function logout() {
 		Session::delete($this->_sessionName);
+		Cookie::delete($this->_cookieName);
 	}
 
 }
