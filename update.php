@@ -11,10 +11,33 @@ if (!$user->isLoggedIn()) {
 
 // if form is submitted
 if (Input::exists()) {
+
 	// if token exists
 	if (Token::check(Input::get('token'))) {
-		echo 'ok';
+
+		// validate input
+		$validate = new Validate();
+		$validation = $validate->check($_POST, array(
+			"name" => array(
+				"required"	=> true,
+				"min"				=> 2,
+				"max"				=> 50
+			)
+		));
+
+		// if input ok
+		if ($validation->passed()) {
+			echo 'ok';
+		} else {
+
+			foreach ($validation->errors() as $error) {
+				echo $error . '<br>';
+			}
+
+		}
+
 	}
+
 }
 
 ?>
