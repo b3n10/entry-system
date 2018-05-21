@@ -141,7 +141,7 @@ class User {
 		Session::delete($this->_sessionName);
 		Cookie::delete($this->_cookieName);
 
-		// delete hash (cookie) from db
+		// delete hash (cookie) from db (security purposes if hacker gets hash)
 		$this->_db->delete('users_session', array('user_id', '=', $this->data()->id));
 	}
 
