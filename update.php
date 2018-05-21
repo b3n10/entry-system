@@ -18,14 +18,10 @@ if (!$user->isLoggedIn()) {
 <body>
 	<form action="" method="POST">
 		<div class="field">
-			<label>Old Name:</label>
-			<span><?php echo escape($user->data()->name); ?></span>
-		</div>
-		<div class="field">
 			<label for="name">New Name:</label>
-			<input type="text" id="name" name="name">
+			<input type="text" name="name" value="<?php echo escape($user->data()->name); ?>">
+			<button type="submit">Update</button>
 		</div>
-		<button type="submit">Update</button>
 		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 	</form>
 </body>
