@@ -4,11 +4,27 @@ require_once 'core/init.php';
 
 $user = new User();
 
+// if user not logged in
 if (!$user->isLoggedIn()) {
 	Redirect::to('index.php');
+// if user is logged in
 } else {
 
+	// if form submitted
 	if (Input::exists()) {
+
+		$validate = new Validate();
+		$validation = $validate->check($_POST, array(
+			"password1"	=> array(
+				"required"	=> true,
+				"min"				=> 6,
+				"max"				=> 20
+			),
+			"password2"	=> array(
+				"matches"		=> "password1"
+			)
+		));
+
 	}
 
 }
