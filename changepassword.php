@@ -35,12 +35,22 @@ if (!$user->isLoggedIn()) {
 			if ($validation->passed()) {
 				try {
 
-					$user->update(array(
-						'password'	=> Hash::make(Input::get('password1'), $user->data()->salt)
-					));
+					if (Hash::make(Input::get('current_password'), $user->data()->salt) !== $user->data()->password) {
+						echo 'Current password incorrect!';
+					} else {
 
-					Session::flash('home', 'Successfully updated password!');
-					Redirect::to('index.php');
+						// update both password and salt
+						$salt = Hash::salt(5);
+
+						$user->update(array(
+							'password'	=> Hash::make(Input::get('new_password'), $salt),
+							'salt'			=> $salt
+						));
+
+						Session::flash('home', 'Successfully updated password!');
+						Redirect::to('index.php');
+
+					}
 
 				} catch (Exception $e) {
 					die($e->getMessage());
