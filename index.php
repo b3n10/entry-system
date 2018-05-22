@@ -17,7 +17,7 @@ $user = new User();
 <body>
 <?php if ($user->isLoggedIn()): ?>
 <p>
-	Hi, <?php echo escape($user->data()->name); ?>
+	Hi, <a href='profile.php?user=<?php echo escape($user->data()->username); ?>'><?php echo escape($user->data()->username);?></a>
 </p>
 <ul>
 	<li><a href="update.php">Update</a></li>
