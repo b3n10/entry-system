@@ -161,7 +161,13 @@ class User {
 
 	public function hasPermission($key) {
 
-		// get the current group of user via user_group
+		// get the current group of user via user_group from 'groups' table
 		$group = $this->_db->get('groups', array('id', '=', $this->data()->user_group));
+
+		// if query returns result
+		if ($group->count()) {
+			return $group->first()->permissions;
+		}
+
 	}
 }
