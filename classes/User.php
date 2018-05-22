@@ -160,5 +160,8 @@ class User {
 	}
 
 	public function hasPermission($key) {
+
+		// get the current group of user via user_group
+		$group = $this->_db->get('groups', array('id', '=', $this->data()->user_group));
 	}
 }
