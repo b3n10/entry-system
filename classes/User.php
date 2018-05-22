@@ -166,8 +166,9 @@ class User {
 
 		// if query returns result
 		if ($group->count()) {
-			return $group->first()->permissions;
-		}
 
+			// convert from json to array with 'true' parameter
+			$permissions = json_decode($group->first()->permissions, true);
+		}
 	}
 }
