@@ -20,4 +20,6 @@ if (!$username = Input::get('user')) {
 
 	echo '<h3>' . $data->username . '</h3>';
 	echo '<p>Full name: ' . $data->name . '</p>';
+
+	echo 'Back to <a href="index.php">Home</a>';
 }
