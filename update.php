@@ -29,6 +29,7 @@ if (Input::exists()) {
 		if ($validation->passed()) {
 
 			try {
+
 				$user->update(array(
 					"name" => Input::get('name')
 				));
