@@ -36,7 +36,7 @@ $user = new User();
 		}
 
 		if (!$user->hasPermission('admin') && !$user->hasPermission('moderator')) {
-			echo '<li>none</li>';
+			echo '<li>standard</li>';
 		}
 
 		echo '</ul>';
