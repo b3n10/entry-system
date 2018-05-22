@@ -10,38 +10,43 @@ if (!$user->isLoggedIn()) {
 // if user is logged in
 } else {
 
-	// if form submitted
-	if (Input::exists()) {
+	// check token
+	if (Token::check(Input::get('token'))) {
 
-		$validate = new Validate();
-		$validation = $validate->check($_POST, array(
-			"password1"	=> array(
-				"required"	=> true,
-				"min"				=> 6,
-				"max"				=> 20
-			),
-			"password2"	=> array(
-				"matches"		=> "password1"
-			)
-		));
+		// if form submitted
+		if (Input::exists()) {
 
-		if ($validation->passed()) {
-			try {
+			$validate = new Validate();
+			$validation = $validate->check($_POST, array(
+				"password1"	=> array(
+					"required"	=> true,
+					"min"				=> 6,
+					"max"				=> 20
+				),
+				"password2"	=> array(
+					"matches"		=> "password1"
+				)
+			));
 
-				$user->update(array(
-					'password'	=> Hash::make(Input::get('password1'), $user->data()->salt)
-				));
+			if ($validation->passed()) {
+				try {
 
-				Session::flash('home', 'Successfully updated password!');
-				Redirect::to('index.php');
+					$user->update(array(
+						'password'	=> Hash::make(Input::get('password1'), $user->data()->salt)
+					));
 
-			} catch (Exception $e) {
-				die($e->getMessage());
+					Session::flash('home', 'Successfully updated password!');
+					Redirect::to('index.php');
+
+				} catch (Exception $e) {
+					die($e->getMessage());
+				}
+			} else {
+				foreach ($validation->errors() as $error) {
+					echo $error . '<br>';
+				}
 			}
-		} else {
-			foreach ($validation->errors() as $error) {
-				echo $error . '<br>';
-			}
+
 		}
 
 	}
