@@ -25,6 +25,14 @@ if (!$user->isLoggedIn()) {
 			)
 		));
 
+		if ($validation->passed()) {
+			// passed
+		} else {
+			foreach ($validation->errors() as $error) {
+				echo $error . '<br>';
+			}
+		}
+
 	}
 
 }
