@@ -159,4 +159,6 @@ class User {
 		$this->_db->delete('users_session', array('user_id', '=', $this->data()->id));
 	}
 
+	public function hasPermission($key) {
+	}
 }
