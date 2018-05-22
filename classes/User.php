@@ -136,6 +136,20 @@ class User {
 		return $this->_isLoggedIn;
 	}
 
+	public function update($fields = array(), $id = null) {
+
+		// if no $id is passed, it will use the id of current logged user
+		if (!$id && $this->isLoggedIn()) {
+			$id = $this->data()->id;
+		}
+
+		if (!$this->_db->update('users', $id, $fields)) {
+			throw new Exception('There was a problem updating user!');
+		}
+
+		return true;
+	}
+
 	public function logout() {
 		// delete sesssion and cookie
 		Session::delete($this->_sessionName);
