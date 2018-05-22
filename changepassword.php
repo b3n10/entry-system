@@ -65,6 +65,11 @@ if (!$user->isLoggedIn()) {
 	<form action="" method="POST">
 
 		<div class="field">
+			<label for="password">Password:</label>
+			<input type="password" name="password">
+		</div>
+
+		<div class="field">
 			<label for="password1">Password:</label>
 			<input type="password" name="password1">
 		</div>
