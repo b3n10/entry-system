@@ -11,7 +11,8 @@ $msg = '';
 if ($user->isLoggedIn()) {
 
 	// greet user with logout option
-	$msg = 'Hi, ' . escape($user->data()->username) . '. <a href="logout.php">Log out</a>.';
+	$msg = 'Hi, ' . escape($user->data()->name);
+	$msg .= '<ul><li><a href="update.php">Update</a></li><li><a href="logout.php">Log out</a></li>';
 
 } else {
 
