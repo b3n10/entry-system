@@ -35,6 +35,7 @@ if (!$user->isLoggedIn()) {
 			if ($validation->passed()) {
 				try {
 
+					// check if current_password matches on record
 					if (Hash::make(Input::get('current_password'), $user->data()->salt) !== $user->data()->password) {
 						echo 'Current password incorrect!';
 					} else {
