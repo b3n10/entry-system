@@ -169,6 +169,12 @@ class User {
 
 			// convert from json to array with 'true' parameter
 			$permissions = json_decode($group->first()->permissions, true);
+
+			// get the value of $key from $permission array
+			if ($permissions[$key]) {
+				// 1 true, 0 false
+				return true;
+			}
 		}
 	}
 }
