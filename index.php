@@ -6,20 +6,7 @@ if (Session::exists('home')) {
 }
 
 $user = new User();
-$msg = '';
 
-if ($user->isLoggedIn()) {
-
-	// greet user with logout option
-	$msg = 'Hi, ' . escape($user->data()->name);
-	$msg .= '<ul><li><a href="update.php">Update</a></li><li><a href="logout.php">Log out</a></li>';
-
-} else {
-
-	// show login/register link
-	$msg = 'Please <a href="login.php">log in</a> or <a href="register.php">register</a>.';
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +15,19 @@ if ($user->isLoggedIn()) {
 	<title>Home</title>
 </head>
 <body>
-	<p><?php echo $msg; ?></p>
+<?php if ($user->isLoggedIn()): ?>
+<p>
+	Hi, <?php echo escape($user->data()->name); ?>
+</p>
+<ul>
+	<li><a href="update.php">Update</a></li>
+	<li><a href="changepassword.php">Change Password</a></li>
+	<li><a href="logout.php">Log out</a></li>
+</ul>
+<?php else: ?>
+<p>
+	Please <a href="login.php">log in</a> or <a href="register.php">register</a>
+</p>
+<?php endif ?>
 </body>
 </html>
