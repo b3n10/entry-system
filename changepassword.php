@@ -27,6 +27,14 @@ if (!$user->isLoggedIn()) {
 
 		if ($validation->passed()) {
 			try {
+
+				$user->update(array(
+					'password'	=> Hash::make(Input::get('password1'), $user->data()->salt)
+				));
+
+				Session::flash('home', 'Successfully updated password!');
+				Redirect::to('index.php');
+
 			} catch (Exception $e) {
 				die($e->getMessage());
 			}
