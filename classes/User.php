@@ -176,5 +176,8 @@ class User {
 				return true;
 			}
 		}
+
+		// if all else fail
+		return false;
 	}
 }
