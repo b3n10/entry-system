@@ -127,7 +127,7 @@ class User {
 		return $this->_data;
 	}
 
-	// if data is already retrieved
+	// if there is data
 	public function exists() {
 		return (!empty($this->_data));
 	}
