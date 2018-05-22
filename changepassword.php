@@ -18,13 +18,17 @@ if (!$user->isLoggedIn()) {
 
 			$validate = new Validate();
 			$validation = $validate->check($_POST, array(
-				"password1"	=> array(
-					"required"	=> true,
-					"min"				=> 6,
-					"max"				=> 20
+				'current_password'	=> array(
+					'required'	=> true,
+					'min'				=> 6
 				),
-				"password2"	=> array(
-					"matches"		=> "password1"
+				'new_password'	=> array(
+					'required'	=> true,
+					'min'				=> 6
+				),
+				'confirm_password'	=> array(
+					'required'	=> true,
+					'matches'		=> 'new_password'
 				)
 			));
 
@@ -65,18 +69,18 @@ if (!$user->isLoggedIn()) {
 	<form action="" method="POST">
 
 		<div class="field">
-			<label for="password">Password:</label>
-			<input type="password" name="password">
+			<label for="current_password">Current Password:</label>
+			<input type="password" name="current_password">
 		</div>
 
 		<div class="field">
-			<label for="password1">Password:</label>
-			<input type="password" name="password1">
+			<label for="new_password">New Password:</label>
+			<input type="password" name="new_password">
 		</div>
 
 		<div class="field">
-			<label for="password2">Confirm Password:</label>
-			<input type="password" name="password2">
+			<label for="confirm_password">Confirm Password:</label>
+			<input type="password" name="confirm_password">
 		</div>
 
 		<button type="submit">Update</button>
