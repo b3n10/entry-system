@@ -67,6 +67,7 @@ if (Input::exists()) {
 			<input type="text" name="name" value="<?php echo escape($user->data()->name); ?>">
 			<button type="submit">Update</button>
 		</div>
+		<a href="index.php">Home</a>
 		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 	</form>
 </body>
