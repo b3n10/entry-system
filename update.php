@@ -27,7 +27,19 @@ if (Input::exists()) {
 
 		// if input ok
 		if ($validation->passed()) {
-			echo 'ok';
+
+			try {
+				$user->update(array(
+					"name" => Input::get('name')
+				));
+
+				Session::flash('home', 'User info updated!');
+				Redirect::to('index.php');
+
+			} catch (Exception $e) {
+				die($e->getMessage());
+			}
+			// if error, show error
 		} else {
 
 			foreach ($validation->errors() as $error) {
