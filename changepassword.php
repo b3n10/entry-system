@@ -26,7 +26,10 @@ if (!$user->isLoggedIn()) {
 		));
 
 		if ($validation->passed()) {
-			// passed
+			try {
+			} catch (Exception $e) {
+				die($e->getMessage());
+			}
 		} else {
 			foreach ($validation->errors() as $error) {
 				echo $error . '<br>';
